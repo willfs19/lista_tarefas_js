@@ -31,6 +31,8 @@ function trataInfo() {
 
 	geral.innerHTML = novaLi;
 
+	localStorage.setItem("lista", JSON.stringify(listaItens));
+
 }
 
 btnAddTask.addEventListener("click", pegaCampo);
@@ -44,3 +46,15 @@ function concluirTarefa(posicao) {
 	listaItens[posicao].concluida = !listaItens[posicao].concluida;
 	trataInfo();
 }
+
+function recarregarTarefas() {
+	let tarefasLocalStorage = localStorage.getItem("lista");
+
+	if(tarefasLocalStorage) {
+		listaItens = JSON.parse(tarefasLocalStorage);
+	}
+	
+	trataInfo()
+}
+
+recarregarTarefas();
